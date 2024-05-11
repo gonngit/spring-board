@@ -1,0 +1,15 @@
+package com.example.demo.question;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class QuestionController {
+	
+	@GetMapping("/question/list")
+	@ResponceBody
+	public String list() {
+		return "question list";
+	}
+}

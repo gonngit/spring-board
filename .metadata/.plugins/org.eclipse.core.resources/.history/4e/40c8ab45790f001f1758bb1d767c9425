@@ -1,0 +1,9 @@
+package com.example.demo.question;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponceBody;
+import org.springframework.stereotype.Controller;
+
+public class QuestionController {
+
+}

@@ -1,0 +1,26 @@
+package com.example.demo;
+
+import java.time.LocalDateTime;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+@SpringBootTest
+class SbbApplicationTests {
+	
+	@Autowired
+	private QuestionRepository questionRepository;
+
+	@Test
+	void testJpa() {
+		Question q1 = new Question();
+		q1.setSubject("what is sbb?");
+		q1.setContent("want to know about sbb");
+		q1.setCreateDate(LocalDateTime.now());
+		this.questionRepository.save(q1);
+		
+
+	}
+
+}

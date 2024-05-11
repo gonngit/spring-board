@@ -1,0 +1,26 @@
+package com.example.demo.question;
+
+import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.ResponseBody; // using template instead of response body
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Controller
+public class QuestionController {
+	
+	//private final QuestionRepository questionRepository;
+	private final QuestionService questionService;
+	
+	@GetMapping("/question/list")
+	//@ResponseBody
+	public String list(Model model) {
+		//List<Question> questionList = questionRepository.findAll();
+		List<Question> questionList = questionService.getList();
+		model.addAttribute("questionList", questionList);
+		return "question_list"; // file name of the template
+	}
+}
