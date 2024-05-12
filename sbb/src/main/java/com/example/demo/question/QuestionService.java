@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.time.LocalDateTime;
 
-
+import com.example.demo.user.SiteUser;
 import com.example.demo.DataNotFoundException;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
@@ -41,11 +41,12 @@ public class QuestionService {
 		}
 	}
 	
-	public void create(String subject, String content) {
+	public void create(String subject, String content, SiteUser user) {
 		Question question = new Question();
 		question.setSubject(subject);
 		question.setContent(content);
 		question.setCreateDate(LocalDateTime.now());
+		question.setAuthor(user);
 		questionRepository.save(question);
 	}
 

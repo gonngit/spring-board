@@ -24,11 +24,7 @@ class SbbApplicationTests {
 
 	@Test
 	void testJpa() {
-		for (int i = 0; i < 300; i++) {
-			String subject = String.format("test data:[%03d]", i);
-			String content = "no content";
-			this.questionService.create(subject, content);
-		}
+		
 	}
 
 }

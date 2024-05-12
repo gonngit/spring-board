@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import com.example.demo.answer.AnswerForm;
+import java.security.Principal;
+import com.example.demo.user.SiteUser;
+import com.example.demo.user.UserService;
 
 @RequestMapping("/question")
 @RequiredArgsConstructor
@@ -24,6 +28,7 @@ public class QuestionController {
 	
 	//private final QuestionRepository questionRepository;
 	private final QuestionService questionService;
+	private final UserService userService;
 	
 	@GetMapping("/list") // more general than getmapping
 	//@GetMapping("/question/list")
@@ -45,18 +50,21 @@ public class QuestionController {
 		return "question_detail";
 	}
 	
+	@PreAuthorize("isAuthenticated()") // only authenticated users can access
 	@GetMapping("/create")
 	public String questionCreate(QuestionForm questionForm) {
 		return "question_form";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/create")
-	public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+	public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			return "question_form";
 		}
+		SiteUser siteUser = this.userService.getUser(principal.getName());
 		// create question (method needed from question service)
-		this.questionService.create(questionForm.getSubject(), questionForm.getContent());
+		this.questionService.create(questionForm.getSubject(), questionForm.getContent(), siteUser);
 		return "redirect:/question/list";
 	}
 	

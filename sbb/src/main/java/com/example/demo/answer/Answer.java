@@ -1,5 +1,6 @@
 package com.example.demo.answer;
 
+import com.example.demo.user.SiteUser;
 import java.time.LocalDateTime;
 import com.example.demo.question.Question;
 
@@ -29,5 +30,8 @@ public class Answer {
 	
 	@ManyToOne
 	private Question question;
+	
+	@ManyToOne
+	private SiteUser Author;
 
 }

@@ -1,6 +1,8 @@
 package com.example.demo.question;
 
+import com.example.demo.user.SiteUser;
 import java.time.LocalDateTime;
+
 import com.example.demo.answer.Answer;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.CascadeType;
 // Cascade is for deleting the answers when the question is deleted
 
@@ -35,6 +38,9 @@ public class Question {
 	private List<Answer> answerList;
 
 	private LocalDateTime createDate;
+	
+	@ManyToOne
+	private SiteUser Author;
 
 
 }
