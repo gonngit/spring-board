@@ -14,7 +14,7 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	
-	public SiteUser create(String username, String password, String email) {
+	public SiteUser create(String username, String email, String password) {
 		//BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // encode password
 		SiteUser user = new SiteUser();
 		user.setUsername(username);
