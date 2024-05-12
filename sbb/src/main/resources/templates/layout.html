@@ -11,8 +11,12 @@
 	<title>Hello, sbb!</title>
 </head>
 <body>
+	<!-- navbar -->
+	<nav th:replace="navbar :: navbarFragment"></nav>
 	<!-- basic layout -->
 	<th:block layout:fragment="content"></th:block>
 	<!-- end of basic layout -->
+	<!-- bootstrap js -->
+	<script th:src="@{/bootstrap.min.js}"></script>
 </body>
 </html>
