@@ -38,6 +38,7 @@ public class Question {
 	private List<Answer> answerList;
 
 	private LocalDateTime createDate;
+	private LocalDateTime modifyDate;
 	
 	@ManyToOne
 	private SiteUser Author;
