@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.Page;
 
 import jakarta.validation.Valid;
 import java.util.List;
@@ -26,10 +28,12 @@ public class QuestionController {
 	@GetMapping("/list") // more general than getmapping
 	//@GetMapping("/question/list")
 	//@ResponseBody
-	public String list(Model model) {
+	public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
 		//List<Question> questionList = questionRepository.findAll();
-		List<Question> questionList = this.questionService.getList();
-		model.addAttribute("questionList", questionList);
+		//List<Question> questionList = this.questionService.getList();
+		//model.addAttribute("questionList", questionList);
+		Page<Question> paging = this.questionService.getPage(page);
+		model.addAttribute("paging", paging);
 		return "question_list"; // file name of the template
 	}
 	

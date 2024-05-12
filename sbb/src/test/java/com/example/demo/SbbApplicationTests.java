@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.question.QuestionService;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,12 +20,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 class SbbApplicationTests {
 	
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionService questionService;
 
 	@Test
 	void testJpa() {
-		Question q = this.questionRepository.findBySubject("what is sbb?");
-		assertEquals(1, q.getId());
+		for (int i = 0; i < 300; i++) {
+			String subject = String.format("test data:[%03d]", i);
+			String content = "no content";
+			this.questionService.create(subject, content);
+		}
 	}
 
 }

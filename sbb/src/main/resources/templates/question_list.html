@@ -9,7 +9,7 @@
 	        </tr>
 		</thead>
 		<tbody>
-			<tr th:each="question, loop : ${questionList}">
+			<tr th:each="question, loop : ${paging}">
 				<td th:text="${loop.count}"></td>
 				<td>
 					<a th:href="@{|/question/detail/${question.id}|}"
@@ -20,6 +20,26 @@
 			</tr>
 		</tbody>
 	</table>
+	<!-- paging -->
+	<div th:if="${!paging.isEmpty()}">
+		<ul class="pagination justify-content-center">
+			<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+				<a class="page-link" th:href="@{|?page=${paging.number - 1}|}">
+					<span>previous</span>
+				</a>
+			</li>
+			<li th:each="page : ${#numbers.sequence(0, paging.totalPages - 1)}" th:if="${page >= paging.number-5 and page <= paging.number+5}" th:classappend="${page == paging.number} ? 'active'" class="page-item">
+                <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+				
+			</li>
+			<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+				<a class="page-link" th:href="@{|?page=${paging.number + 1}|}">
+                    <span>next</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- end of paging -->
 	<a th:href="@{/question/create}" class="btn btn-primary">new question</a>
 </div>
 </html>
