@@ -43,7 +43,7 @@ public class Question {
 	private LocalDateTime modifyDate;
 	
 	@ManyToOne
-	private SiteUser Author;
+	private SiteUser author;
 	
 	
 	@ManyToMany

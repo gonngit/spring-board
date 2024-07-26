@@ -39,12 +39,13 @@ public class QuestionController {
 	@GetMapping("/list") // more general than getmapping
 	//@GetMapping("/question/list")
 	//@ResponseBody
-	public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
+	public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page, @RequestParam(value="kw", defaultValue = "") String kw) {
 		//List<Question> questionList = questionRepository.findAll();
 		//List<Question> questionList = this.questionService.getList();
 		//model.addAttribute("questionList", questionList);
-		Page<Question> paging = this.questionService.getPage(page);
+		Page<Question> paging = this.questionService.getList(page, kw);
 		model.addAttribute("paging", paging);
+		model.addAttribute("kw", kw);
 		return "question_list"; // file name of the template
 	}
 	
