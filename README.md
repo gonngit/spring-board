@@ -2,7 +2,7 @@
 java 17 / springboot 3.2.5
 
 
-# functions
+# Functions
 1. question list
 2. ask questions
 3. view a question
